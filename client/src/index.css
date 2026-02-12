@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Smooth theme transition ── */
+*,
+*::before,
+*::after {
+    transition-property: background-color, border-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+}
+
+/* Exclude elements that need instant transitions */
+input,
+textarea,
+select,
+button,
+a {
+    transition-property: background-color, border-color, color, box-shadow, opacity, transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease;
+}
+
+@layer components {
+
+    /* Glass card - used for all card/panel containers */
+    .glass-card {
+        @apply bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm;
+    }
+
+    /* Glass card with hover effect */
+    .glass-card-hover {
+        @apply bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-600 hover:-translate-y-0.5 transition-all duration-200 ease-out;
+    }
+
+    /* Input field */
+    .input-field {
+        @apply w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-150 text-sm;
+    }
+
+    /* Skeleton shimmer */
+    .skeleton {
+        @apply bg-slate-200 dark:bg-slate-700;
+        background-image: linear-gradient(90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.08) 50%,
+                transparent 100%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s ease-in-out infinite;
+    }
+
+    /* Page transition wrapper */
+    .page-enter {
+        animation: fade-in-up 0.2s ease-out both;
+    }
+
+    /* Staggered children animation */
+    .stagger-item {
+        animation: fade-in-up 0.25s ease-out both;
+    }
+
+    /* ── Badge styles ── */
+    .badge {
+        @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    }
+
+    .badge-open {
+        @apply bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400;
+    }
+
+    .badge-in-progress {
+        @apply bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400;
+    }
+
+    .badge-closed {
+        @apply bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400;
+    }
+
+    .badge-low {
+        @apply bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400;
+    }
+
+    .badge-medium {
+        @apply bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400;
+    }
+
+    .badge-high {
+        @apply bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400;
+    }
+}
+
+/* Fix dark mode text in select option elements */
+.dark option {
+    background-color: #1e293b;
+    /* slate-800 */
+    color: #f1f5f9;
+    /* slate-100 */
+}
