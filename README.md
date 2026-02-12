@@ -146,58 +146,6 @@ The application includes several security measures:
 • Server‑side validation
 • No direct database access from frontend
 
-Project Folder Structure:
-Backend Structure
-
-backend/
-│
-├── config/
-│ └── database connection setup
-│
-├── controllers/
-│ └── contains logic for handling requests (create task, update task, etc.)
-│
-├── middleware/
-│ └── authentication and authorization checks
-│
-├── models/
-│ └── Mongoose schemas for User and Task
-│
-├── routes/
-│ └── API route definitions
-│
-├── utils/
-│ └── helper functions
-│
-└── server.js
-└── main entry point of backend server
-
-Frontend Structure:
-
-frontend/
-│
-├── src/
-│ ├── components/
-│ │ reusable UI components
-│ │
-│ ├── pages/
-│ │ main application pages (login, dashboard, tasks)
-│ │
-│ ├── services/
-│ │ API request functions using Axios
-│ │
-│ ├── context/
-│ │ authentication state management
-│ │
-│ ├── App.jsx
-│ │ main routing configuration
-│ │
-│ └── main.jsx
-│ application entry point
-│
-└── public/
-static files
-
 Quick Start
 
 Follow these steps to run the project locally.
