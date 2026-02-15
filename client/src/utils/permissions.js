@@ -18,7 +18,6 @@ export const PERMISSIONS = [
     {
         key: PERMISSION_KEYS.VIEW_CASES,
         label: 'View Cases',
-        icon: '👁️',
         description: 'Grants read-only access to cases in the system. Users can browse the case list, open case details, view the activity timeline, and read comments.',
         canDo: [
             'View all cases in the system',
@@ -36,7 +35,6 @@ export const PERMISSIONS = [
     {
         key: PERMISSION_KEYS.CREATE_CASE,
         label: 'Create Case',
-        icon: '➕',
         description: 'Allows users to create new cases by providing a title and description. Users are reporting issues, not managing workflow.',
         canDo: [
             'Create new cases/tasks/issues',
@@ -53,7 +51,6 @@ export const PERMISSIONS = [
     {
         key: PERMISSION_KEYS.COMMENT_ON_CASES,
         label: 'Comment on Cases',
-        icon: '💬',
         description: 'Enables collaboration and discussion within tasks. Users can add, edit, and delete their own comments.',
         canDo: [
             'Add comments to any visible case',
@@ -85,7 +82,6 @@ export const PERMISSIONS = [
     {
         key: PERMISSION_KEYS.ASSIGN_TO_SELF,
         label: 'Assign to Self (Take Task)',
-        icon: '🙋',
         description: 'Allows users to volunteer for work by assigning unassigned cases to themselves.',
         canDo: [
             'Assign an unassigned case to themselves',
@@ -101,7 +97,6 @@ export const PERMISSIONS = [
     {
         key: PERMISSION_KEYS.WATCH_CASE,
         label: 'Watch / Follow a Case',
-        icon: '👀',
         description: 'Users can follow a case to track updates. This only subscribes — no editing capabilities are granted.',
         canDo: [
             'Follow any visible case',

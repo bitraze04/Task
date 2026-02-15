@@ -98,3 +98,29 @@ Open http://localhost:5173 in your browser.
 ## License
 
 MIT
+
+## Deployment on Vercel
+
+This project is configured for easy deployment on [Vercel](https://vercel.com).
+
+### Prerequisites
+1. A Vercel account
+2. The `vercel` CLI installed (optional, can deploy via Git integration)
+
+### Deploying the Client (Frontend)
+1. Push your code to a Git repository (GitHub/GitLab/Bitbucket)
+2. Import the project in Vercel
+3. Select the `client` directory as the **Root Directory**
+4. Vercel will automatically detect Vite and configure the build settings
+5. Add the environment variables from `client/.env` to the Vercel project settings
+
+### Deploying the Server (Backend)
+1. Import the same repository as a **separate project** in Vercel
+2. Select the `server` directory as the **Root Directory**
+3. Add the environment variables:
+   - `FIREBASE_SERVICE_ACCOUNT_JSON`: **(Important)** Paste the *content* of your `serviceAccountKey.json` file here as a single line string. This allows the serverless function to authenticate without needing the file uploaded.
+   - `ALLOWED_ORIGINS`: Add your client deployment URL (e.g., `https://your-client-app.vercel.app`)
+
+### Local Development vs Production
+- **Local:** The server reads `serviceAccountKey.json` from the file system.
+- **Production (Vercel):** The server reads the JSON string from the `FIREBASE_SERVICE_ACCOUNT_JSON` environment variable.

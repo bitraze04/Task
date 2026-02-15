@@ -7,7 +7,7 @@
 
 import { db } from '../config/firebase.js';
 import { asyncHandler } from '../middleware/errorHandler.js';
-import { getDefaultPermissions, validatePermissionKeys, PERMISSIONS } from '../utils/permissions.js';
+import { getDefaultPermissions, validatePermissionKeys } from '../utils/permissions.js';
 
 /**
  * Register a new user in Firestore

@@ -12,14 +12,11 @@ const PORT = process.env.PORT || 5000;
 // Start server
 app.listen(PORT, () => {
     console.log(`
-╔══════════════════════════════════════════════════════════╗
-║   Case Management API Server                             ║
-╠══════════════════════════════════════════════════════════╣
-║   Status:  Running                                       ║
-║   Port:    ${PORT}                                       ║
-║   Mode:    ${process.env.NODE_ENV || 'development'}      ║
-║   Health:  http://localhost:${PORT}/api/health           ║
-╚══════════════════════════════════════════════════════════╝
+
+   Status:  Running                                       
+   Port:    ${PORT}                                       
+   Mode:    ${process.env.NODE_ENV || 'development'}      
+   Health:  http://localhost:${PORT}/api/health           
   `);
 });
 
