@@ -1,90 +1,228 @@
-# Case Management Web Application
+Task Management Web Application
 
-A production-grade case/task management platform built with React, Redux Toolkit, Node.js, Express, and Firebase.
+Introduction:
+This project is a full‑stack task management web application built to help individuals and small teams organize their work in a simple and structured way. Instead of tracking tasks through chats, notes, or scattered documents, the application provides a single place where users can create tasks, assign them, update their progress, and monitor overall activity.
+The goal of this project is not just to create a CRUD application, but to demonstrate how a real web system works end‑to‑end — from user authentication to protected APIs, database storage, and a responsive user interface.
+Users can securely log in, view their assigned tasks, update status, and collaborate in a controlled environment. The system also supports role‑based access so that certain actions are restricted depending on the user’s permissions.
+The application is built using React for the frontend, Node.js and Express for the backend, Firebase Authentication for secure login, and MongoDB for persistent data storage.
 
-## Features
+Why this project exists:
+In many student groups, small startups, and project teams, task tracking is usually handled through messaging apps, spreadsheets, or memory. This often causes:
 
-- **Authentication**: Email/password login via Firebase Auth
-- **Role-Based Access**: Admin (Project Manager) and User (Employee) roles
-- **Case Management**: Create, edit, delete, and track cases with priorities and statuses
-- **Comments System**: Threaded comments on each case
-- **Modern UI**: Glassmorphism design, dark mode, responsive layout
+• Tasks getting forgotten
+• No clear ownership
+• No history of work
+• Confusion about progress
+• Missed deadlines
 
-## Tech Stack
+Large tools exist, but they are often too complex for beginners. This project focuses on simplicity while still following proper software engineering practices.
 
-| Layer | Technology |
-|-------|------------|
-| Frontend | React 18, Redux Toolkit, TailwindCSS, Vite |
-| Backend | Node.js, Express.js |
-| Database | Firebase Firestore |
-| Auth | Firebase Authentication |
+What the application does:
+The platform allows users to:
 
-## Project Structure
+• Register and log in securely
+• View their dashboard
+• Create tasks
+• Assign tasks to users
+• Update task status
+• Track progress
+• Access only authorized features
 
-```
-├── client/          # React frontend
-└── server/          # Node.js backend
-```
+All operations are handled through a backend API, and the database stores all task and user information.
 
-## Prerequisites
+System Architecture:
+The application follows a client‑server architecture and is divided into three main parts.
 
-- Node.js 18+ 
-- npm or yarn
-- Firebase project with Authentication and Firestore enabled
+Frontend (Client)
 
-## Quick Start
+The frontend is built using React. It is responsible for:
 
-### 1. Clone and Install
+• Displaying pages
+• Handling user interaction
+• Sending requests to the backend
+• Showing task data
 
-```bash
-# Install backend dependencies
-cd server
+The frontend never directly accesses the database. It communicates only with the backend API.
+
+Backend (Server)
+
+The backend is built using Node.js and Express. It acts as the brain of the system and handles:
+
+• Business logic
+• Authentication verification
+• Authorization checks
+• Data validation
+• Database operations
+
+Every request from the frontend goes through the backend first.
+
+Database
+
+MongoDB is used as the database. It stores:
+
+• User information
+• Task details
+• Assignment data
+• Status updates
+
+Mongoose is used to define schemas and interact with MongoDB.
+
+Authentication Flow:
+Authentication is handled using Firebase Authentication.
+User logs in from the frontend.
+Firebase verifies the credentials.
+Firebase returns an ID token.
+The frontend sends this token with every API request.
+The backend verifies the token using Firebase Admin SDK.
+If valid, the user is allowed to access protected routes.
+This ensures that no one can access the backend APIs without logging in.
+
+AuthorizationL:
+The system uses role‑based access control.
+
+Admin
+
+• Can create tasks
+• Can assign tasks
+• Can view all tasks
+
+Normal User
+
+• Can view assigned tasks
+• Can update task status
+• Cannot manage other users
+
+The backend checks permissions before performing any action.
+
+Technology Stack:
+
+Frontend
+React
+React Router
+Axios
+CSS / Tailwind styling
+
+Backend
+Node.js
+Express.js
+Firebase Admin SDK
+
+Database
+MongoDB
+Mongoose
+
+Authentication:
+Firebase Authentication
+
+API Overview:
+The backend exposes REST APIs.
+
+Examples:
+
+GET /tasks → fetch tasks
+POST /tasks → create a task
+PUT /tasks/ → update a task
+DELETE /tasks/ → delete a task
+
+All routes are protected and require a valid authentication token.
+
+Middleware:
+Middleware is used in the backend to process requests before they reach the controller.
+
+It handles:
+
+• Token verification
+• Permission checking
+• Error handling
+• Request validation
+
+The authentication middleware reads the token from the Authorization header and verifies the user.
+
+Security:
+The application includes several security measures:
+
+• Protected API routes
+• Firebase token verification
+• Server‑side validation
+• No direct database access from frontend
+
+Quick Start
+
+Follow these steps to run the project locally.
+
+1. Clone the repository
+
+git clone https://github.com/bitraze04/Task.git
+
+cd Task
+
+Backend Setup
+
+Go to backend folder
+
+cd backend
+
+Install dependencies
+
 npm install
 
-# Install frontend dependencies
-cd ../client
+Create a .env file
+
+Add:
+
+MONGO_URI=your_mongodb_connection_string
+FIREBASE_PROJECT_ID=your_project_id
+FIREBASE_CLIENT_EMAIL=your_client_email
+FIREBASE_PRIVATE_KEY=your_private_key
+
+Start the backend server
+
+npm run dev
+
+The backend will start on:
+http://localhost:5000
+
+Frontend Setup
+
+Open a new terminal
+cd frontend
+Install dependencies
 npm install
-```
+Start the frontend
+npm start
 
-### 2. Configure Environment Variables
+The frontend will run on:
+http://localhost:3000
 
-**Backend (`server/.env`):**
-```env
-PORT=5000
-FIREBASE_SERVICE_ACCOUNT_PATH=./serviceAccountKey.json
-```
+How to Use
+Open the frontend in your browser.
+Log in using Firebase authentication.
+After login, you will reach the dashboard.
+Create a task.
+Assign it to a user.
+Update the task status.
+All changes are stored in the database and reflected in real time after refresh.
 
-**Frontend (`client/.env`):**
-```env
-VITE_API_URL=http://localhost:5000/api
-VITE_FIREBASE_API_KEY=your_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
-```
+Learning Outcomes
 
-### 3. Add Firebase Service Account
+This project demonstrates understanding of:
 
-Download your service account key from Firebase Console:
-- Go to Project Settings > Service Accounts
-- Click "Generate new private key"
-- Save as `server/serviceAccountKey.json`
+• Full-stack development
+• REST API design
+• Authentication systems
+• Middleware architecture
+• Database modeling
+• Secure backend design
+• Client-server communication
 
-### 4. Run the Application
+What this project demonstrates:
 
-```bash
-# Terminal 1 - Start backend
-cd server
-npm run dev
-
-# Terminal 2 - Start frontend
-cd client
-npm run dev
-```
-
-Open http://localhost:5173 in your browser.
+• Full‑stack development
+• REST API design
+• Authentication and authorization
+• Database modeling
+• Secure backend communication
+• Client‑server architecture
 
 ## User Roles
 
@@ -94,6 +232,10 @@ Open http://localhost:5173 in your browser.
 | User | View cases. Add comments. |
 
 > **Note**: The first user to register automatically becomes an Admin. All subsequent users are assigned the User role.
+
+## Getting Started
+
+Open http://localhost:5173 in your browser.
 
 ## License
 
@@ -124,3 +266,10 @@ This project is configured for easy deployment on [Vercel](https://vercel.com).
 ### Local Development vs Production
 - **Local:** The server reads `serviceAccountKey.json` from the file system.
 - **Production (Vercel):** The server reads the JSON string from the `FIREBASE_SERVICE_ACCOUNT_JSON` environment variable.
+
+## Author
+
+Aditya Kumar  
+B.Tech Computer Science Engineering
+
+This project was created as a learning project to understand how real web applications are built and secured.
